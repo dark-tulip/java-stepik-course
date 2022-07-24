@@ -62,3 +62,10 @@ public class Main {
         return result.toString();
     }
 ```
+#### Read characted in unsigned bytes
+``` Java
+byte[] bytes = "Ы".getBytes(StandardCharsets.UTF_8);
+for (byte bt : bytes) {
+    System.out.println(bt & 0xFF);  // make unsigned
+}
+```
