@@ -1,5 +1,5 @@
-### Базовый курс по java from Computer Science Center
-
+### Небольшой конспектный материал по курсу 
+#### (Java from Computer Science Center)
 
 #### Потоки байт. Контрольная сумма прочитанных данных
 
@@ -24,6 +24,10 @@ public class Main {
 ```
 
 #### Преобразование переводов строк из формата Windows "/r/n" в формат Unix "/n"
+
+* Input/Output Stream - работают с потоками байтов
+* Reader/Writer - работают с потоками символов Unicode
+
 ``` Java
 import java.io.*;
 
