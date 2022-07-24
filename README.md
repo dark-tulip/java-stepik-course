@@ -49,3 +49,16 @@ public class Main {
     }
 }
 ```
+#### Make string from inputStream
+``` Java
+    public static String readAsString(InputStream inputStream, Charset charset) throws IOException {
+        StringBuilder result       = new StringBuilder();
+        InputStreamReader isReader = new InputStreamReader(inputStream, charset);
+        BufferedReader reader      = new BufferedReader(isReader);
+        int ch;
+        while ((ch = reader.read()) > 0) {
+            result.append((char) ch);
+        }
+        return result.toString();
+    }
+```
