@@ -29,26 +29,18 @@ import java.io.*;
 
 public class Main {
 
+    static final byte NEW_LINE     = 0x0A;  // '\n' представляется байтом 10, символ
+    static final byte CARRIAGE_RET = 0x0D;  // '\r' — байтом 13
+
     public static void main(String[] args) throws IOException {
-
-        byte NEW_LINE     = 0x0A;  // '\n' представляется байтом 10
-        byte CARRIAGE_RET = 0x0D;  // '\r' — байтом 13
-        byte[] buf = new byte[1];
-
-        if (System.in.read(buf) > 0) {
-            byte prev = buf[0];
-            while (System.in.read(buf) > 0) {
-                byte curr = buf[0];
-                if (prev != CARRIAGE_RET || curr != NEW_LINE) {
-                    System.out.write(prev);
-                }
-                prev = curr;
+        int prev = System.in.read();  // read one byte
+        while (prev > 0) {
+            int curr = System.in.read();
+            if (prev != CARRIAGE_RET || curr != NEW_LINE) {
+                System.out.write(prev);
             }
-            System.out.write(prev);
-            if (prev != NEW_LINE) {
-                System.out.write(NEW_LINE);
-            }
-        };
+            prev = curr;
+        }
         System.out.flush();
     }
 }
