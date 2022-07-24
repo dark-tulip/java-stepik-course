@@ -9,7 +9,6 @@ import java.io.*;
 public class Main {
     
     public static void main(String[] args) throws IOException {
-        
         assert  checkSumOfStream(new ByteArrayInputStream(new byte[]{0x33, 0x45, 0x01})) == 71;
     }
 
@@ -21,7 +20,6 @@ public class Main {
         }
         return controlSum;
     }
-
 }
 ```
 
@@ -31,12 +29,9 @@ import java.io.*;
 
 public class Main {
 
-    /**
-     * Преобразование переводов строк из формата Windows "/r/n" в формат Unix "/n"
-     */
     public static void main(String[] args) throws IOException {
 
-        byte NEW_LINE     = 0x0A;  // '\n' представляется байтом 10, символ
+        byte NEW_LINE     = 0x0A;  // '\n' представляется байтом 10
         byte CARRIAGE_RET = 0x0D;  // '\r' — байтом 13
         byte[] buf = new byte[1];
 
@@ -58,5 +53,3 @@ public class Main {
     }
 }
 ```
-
-
