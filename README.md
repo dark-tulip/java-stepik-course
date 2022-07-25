@@ -9,7 +9,7 @@ import java.io.*;
 public class Main {
     
     public static void main(String[] args) throws IOException {
-        assert  checkSumOfStream(new ByteArrayInputStream(new byte[]{0x33, 0x45, 0x01})) == 71;
+        assert checkSumOfStream(new ByteArrayInputStream(new byte[]{0x33, 0x45, 0x01})) == 71;
     }
 
     public static int checkSumOfStream(InputStream inputStream) throws IOException {
@@ -69,3 +69,8 @@ for (byte bt : bytes) {
     System.out.println(bt & 0xFF);  // make unsigned
 }
 ```
+
+PrintWriter не бросает IOException (Writer)
+PrintStream не бросает исключений (работает c OutputStream)
+System.out.write -- ввод двоичных данных
+print -- ввод текстовых данных
