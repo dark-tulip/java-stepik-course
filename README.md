@@ -70,7 +70,30 @@ for (byte bt : bytes) {
 }
 ```
 
-PrintWriter не бросает IOException (Writer)
-PrintStream не бросает исключений (работает c OutputStream)
-System.out.write -- ввод двоичных данных
-print -- ввод текстовых данных
+* PrintWriter не бросает IOException (Оборачивает Writer, устанавливают внутренний флаг ошибки checkError)
+* PrintStream не бросает исключений (Оборачивает OutputStream)
+* System.out.write -- вывод двоичных данных
+* print -- вывод текстовых данных (строка)
+
+#### Сумма чисел из входящего потока байтов
+``` Java
+import java.util.Locale;
+import java.util.Scanner;
+
+class Main {
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in).useLocale(Locale.forLanguageTag("ru"));
+    double sum = 0;
+
+    while(sc.hasNext()) {
+      String tmp = sc.next();
+      try {
+        sum += Double.parseDouble(tmp);
+      } catch (NumberFormatException ignored) { }
+    }
+    System.out.printf("%.6f", sum);
+  }
+}
+
+```
