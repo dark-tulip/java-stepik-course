@@ -4,10 +4,6 @@
 #### Потоки байт. Контрольная сумма прочитанных данных
 
 ``` Java
-import java.io.*;
-
-public class Main {
-    
     public static void main(String[] args) throws IOException {
         assert checkSumOfStream(new ByteArrayInputStream(new byte[]{0x33, 0x45, 0x01})) == 71;
     }
@@ -20,7 +16,6 @@ public class Main {
         }
         return controlSum;
     }
-}
 ```
 
 #### Преобразование переводов строк из формата Windows "/r/n" в формат Unix "/n"
@@ -29,38 +24,33 @@ public class Main {
 * Reader/Writer - работают с потоками символов Unicode
 
 ``` Java
-import java.io.*;
+static final byte NEW_LINE     = 0x0A;  // '\n' представляется байтом 10, символ
+static final byte CARRIAGE_RET = 0x0D;  // '\r' — байтом 13
 
-public class Main {
-
-    static final byte NEW_LINE     = 0x0A;  // '\n' представляется байтом 10, символ
-    static final byte CARRIAGE_RET = 0x0D;  // '\r' — байтом 13
-
-    public static void main(String[] args) throws IOException {
-        int prev = System.in.read();  // read one byte
-        while (prev > 0) {
-            int curr = System.in.read();
-            if (prev != CARRIAGE_RET || curr != NEW_LINE) {
-                System.out.write(prev);
-            }
-            prev = curr;
+public static void main(String[] args) throws IOException {
+    int prev = System.in.read();  // read one byte
+    while (prev > 0) {
+        int curr = System.in.read();
+        if (prev != CARRIAGE_RET || curr != NEW_LINE) {
+            System.out.write(prev);
         }
-        System.out.flush();
+        prev = curr;
     }
+    System.out.flush();
 }
 ```
 #### Make string from inputStream
 ``` Java
-    public static String readAsString(InputStream inputStream, Charset charset) throws IOException {
-        StringBuilder result       = new StringBuilder();
-        InputStreamReader isReader = new InputStreamReader(inputStream, charset);
-        BufferedReader reader      = new BufferedReader(isReader);
-        int ch;
-        while ((ch = reader.read()) > 0) {
-            result.append((char) ch);
-        }
-        return result.toString();
+public static String readAsString(InputStream inputStream, Charset charset) throws IOException {
+    StringBuilder result       = new StringBuilder();
+    InputStreamReader isReader = new InputStreamReader(inputStream, charset);
+    BufferedReader reader      = new BufferedReader(isReader);
+    int ch;
+    while ((ch = reader.read()) > 0) {
+        result.append((char) ch);
     }
+    return result.toString();
+}
 ```
 #### Read characted in unsigned bytes
 ``` Java
@@ -77,23 +67,16 @@ for (byte bt : bytes) {
 
 #### Сумма чисел из входящего потока байтов
 ``` Java
-import java.util.Locale;
-import java.util.Scanner;
+Scanner sc = new Scanner(System.in).useLocale(Locale.forLanguageTag("ru"));
+double sum = 0;
 
-class Main {
-
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in).useLocale(Locale.forLanguageTag("ru"));
-    double sum = 0;
-
-    while(sc.hasNext()) {
-      String tmp = sc.next();
-      try {
-        sum += Double.parseDouble(tmp);
-      } catch (NumberFormatException ignored) { }
+while(sc.hasNext()) {
+    String tmp = sc.next();
+        try {
+            sum += Double.parseDouble(tmp);
+        } catch (NumberFormatException ignored) { }
     }
-    System.out.printf("%.6f", sum);
-  }
-}
-
+System.out.printf("%.6f", sum);
 ```
+* java.io (InputStream, OutputStream, Reader, Writer) - блокируется в ожидании пока из потока не будет прочитан хотябы один байт
+* java.nio (Channel, ByteBuffer) - низкоуровневый интерфейс неблокирующего ввода вывода, эффективный для масштабирования программ
