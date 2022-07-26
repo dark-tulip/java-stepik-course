@@ -81,6 +81,26 @@ System.out.printf("%.6f", sum);
 * java.io (InputStream, OutputStream, Reader, Writer) - блокируется в ожидании пока из потока не будет прочитан хотябы один байт
 * java.nio (Channel, ByteBuffer) - низкоуровневый интерфейс неблокирующего ввода вывода, эффективный для масштабирования программ
 
+#### Сериализация и десериализация
+- Реализуют интерфейс без методов, где компилятор сам решает как сериализовывать 
+- Сериализация - сохранение состояния объекта в байтах 
+``` Java
+animals.toArray(new Animal[0]);  // cast from list to array
+```
+``` Java
+animals.toArray(new Animal[0]);  // cast from list to array
+```
+public static Animal[] deserializeAnimalArray(byte[] data) throws IllegalArgumentException {
+    try (ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data))) {
+      Animal[] animals = new Animal[ois.readInt()];
+      for(int i = 0; i < animals.length; i++) {
+        animals[i] = (Animal) ois.readObject();
+      }
+      return animals;
+    } catch (Exception e) {
+      throw new IllegalArgumentException(e);
+    }
+}
 #### Дженерики
 Параметризация возможна только с ссылочными типами
 Один объект производного типа Optional
