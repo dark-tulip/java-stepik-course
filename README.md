@@ -88,8 +88,6 @@ System.out.printf("%.6f", sum);
 animals.toArray(new Animal[0]);  // cast from list to array
 ```
 ``` Java
-animals.toArray(new Animal[0]);  // cast from list to array
-```
 public static Animal[] deserializeAnimalArray(byte[] data) throws IllegalArgumentException {
     try (ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data))) {
       Animal[] animals = new Animal[ois.readInt()];
@@ -101,6 +99,8 @@ public static Animal[] deserializeAnimalArray(byte[] data) throws IllegalArgumen
       throw new IllegalArgumentException(e);
     }
 }
+```
+
 #### Дженерики
 Параметризация возможна только с ссылочными типами
 Один объект производного типа Optional
