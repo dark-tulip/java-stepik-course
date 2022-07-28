@@ -108,3 +108,5 @@ Optional позволяет писать код без if (ifPresent(), orElse()
 <T> - угловые скобки с именами дженерик параметров
 Diamond <> оператор работает только с new
 Conusmer - принимает один параметр указанного типа (consumer.accept(value))
+
+* final keyword is used in several contexts to define an *entity that can only be assigned once*.
