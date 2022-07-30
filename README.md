@@ -164,3 +164,14 @@ class Pair<T, U> {
     }
 }
 ```
+#### Collections
+    
+``` Java
+/* Заполнение множества с условием */
+public static <T> Set<T> symmetricDifference(Set<? extends T> set1, Set<? extends T> set2) {
+        Set<T> result = new HashSet<>();
+        set1.forEach(elem -> { if (!set1.contains(elem)) result.add(elem); });
+        set2.forEach(elem -> { if (!set2.contains(elem)) result.add(elem); });
+        return result;
+}
+```
