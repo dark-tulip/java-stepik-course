@@ -203,3 +203,22 @@ public static <T, U> Function<T, U> ternaryOperator(
         return x -> condition.test(x) ? ifTrue.apply(x) : ifFalse.apply(x); // your implementation here
 }
 ```
+#### Streams
+- Любое кол-во промежуточных операций, запустятся после вызова терминальной операции
+- После вызова терминальной операции больше не пригоден к использованию
+- Предикат - условие
+##### Порождение стрима 
+- Из любой коллекции
+- BufferedReader lines()
+- Из директории на диске Files.list(), Files.walk()
+- DoubleStream.generate(Math::random) - accept Supplier, IntStream.iterate(0, n -> n+1), IntStream.range(0, 100)
+##### Промежуточные (intermediate)
+- map, flatMap, limit, filter(x -> x > 10) - Predicate, peek, sorted, distinct, mapToObj(Integer::toString), skip
+##### Терминальные (запускают стрим на исполнение)
+- forEach(System.out::println) -- accept consumer
+- findFirst, findAny
+- allMatch(s -> s.length > 10), anyMatch - boolean
+- min, count, sum
+- collect(Collectors.toList());
+- reduce - свертка пока не останется один элемент
+- https://annimon.com/article/2778#terminal-operators
