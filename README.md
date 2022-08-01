@@ -222,3 +222,12 @@ public static <T, U> Function<T, U> ternaryOperator(
 - collect(Collectors.toList());
 - reduce - свертка пока не останется один элемент
 - https://annimon.com/article/2778#terminal-operators
+
+``` Java
+/* Iterate throught stream */
+
+public static IntStream pseudoRandomStream(int seed) {
+    return IntStream.iterate(seed, x -> (x * x / 10) % 1000); 
+}
+/* will return: 13, 16, 25, 62, 384, 745, 502, 200, 0, ... */
+```
