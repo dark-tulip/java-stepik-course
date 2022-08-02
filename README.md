@@ -231,3 +231,18 @@ public static IntStream pseudoRandomStream(int seed) {
 }
 /* will return: 13, 16, 25, 62, 384, 745, 502, 200, 0, ... */
 ```
+``` Java
+/* BiConsumer */
+    public static <T> void findMinMax(
+            Stream<? extends T> stream,
+            Comparator<? super T> order,
+            BiConsumer<? super T, ? super T> minMaxConsumer) {
+
+        List<T> lst = stream.sorted(order).collect(Collectors.toList());
+        if (lst.isEmpty()) {
+            minMaxConsumer.accept(null, null);
+        } else {
+            minMaxConsumer.accept(lst.get(0), lst.get(lst.size() - 1));
+        }
+    }
+```
