@@ -246,3 +246,18 @@ public static IntStream pseudoRandomStream(int seed) {
         }
     }
 ```
+``` Java
+/* Soritng by frequency order, descending */
+
+    public static final String possibleChars =  "[^a-zа-я0-9']+";
+
+    public static void main(String[] args) {
+
+        Arrays.stream(new Scanner(System.in).nextLine().toLowerCase().replaceAll(possibleChars, " ").split(" "))
+                .collect(Collectors.groupingBy(String::valueOf, Collectors.counting()))
+                .entrySet().stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey()))
+                .limit(10)
+                .forEach(word -> System.out.println(word.getKey()));
+    }
+```
