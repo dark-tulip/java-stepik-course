@@ -276,3 +276,7 @@ Customer deserialized = gson.fromJson(json, Customer.class);
 ``` Java
 String absolutePath = Paths.get("src", "main", "resources", "images").toFile().getAbsolutePath();
 ```
+# Logger of current class
+``` Java
+Logger logger = Logger.getLogger(this.getClass().getName());
+```
