@@ -272,3 +272,7 @@ String json = gson.toJson(customer);
 
 Customer deserialized = gson.fromJson(json, Customer.class);
 ```
+# Absolute path
+``` Java
+String absolutePath = Paths.get("src", "main", "resources", "images").toFile().getAbsolutePath();
+```
