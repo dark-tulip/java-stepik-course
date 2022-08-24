@@ -261,3 +261,14 @@ public static IntStream pseudoRandomStream(int seed) {
                 .forEach(word -> System.out.println(word.getKey()));
     }
 ```
+
+# GSON
+``` Java
+implementation 'com.google.code.gson:gson:2.9.0'
+
+
+Gson gson = new Gson();
+String json = gson.toJson(customer);
+
+Customer deserialized = gson.fromJson(json, Customer.class);
+```
