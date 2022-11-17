@@ -282,6 +282,7 @@ Logger logger = Logger.getLogger(this.getClass().getName());
 ```
 
 ## Translate enum on RequestBody
+```Java
 public enum PhoneType {
   HOME("Домашний"),
   WORK("Рабочий"),
@@ -307,3 +308,4 @@ public enum PhoneType {
     return null;
   }
 }
+```
