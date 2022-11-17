@@ -280,3 +280,30 @@ String absolutePath = Paths.get("src", "main", "resources", "images").toFile().g
 ``` Java
 Logger logger = Logger.getLogger(this.getClass().getName());
 ```
+
+## Translate enum on RequestBody
+public enum PhoneType {
+  HOME("Домашний"),
+  WORK("Рабочий"),
+  MOBILE("Мобильный");
+
+  private String text;
+
+  PhoneType(String text) {
+    this.text = text;
+  }
+
+  public String getText() {
+    return this.text;
+  }
+
+  @JsonCreator
+  public static PhoneType fromString(String text) {
+    for (PhoneType b : PhoneType.values()) {
+      if (b.text.equalsIgnoreCase(text)) {
+        return b;
+      }
+    }
+    return null;
+  }
+}
